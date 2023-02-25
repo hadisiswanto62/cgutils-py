@@ -1,1 +1,1 @@
-from .characters import parse_characters
+from .parser import *

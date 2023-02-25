@@ -1,7 +1,8 @@
 from django.conf import settings
+from pathlib import Path
 
 # ROOT_PATH = Path(__file__).parent
-ROOT_PATH = settings.BASE_DIR
+ROOT_PATH: Path = settings.BASE_DIR
 DATA_PATH = ROOT_PATH / "game_data"
 
 GAME_DB_PATH = DATA_PATH / "game_db"

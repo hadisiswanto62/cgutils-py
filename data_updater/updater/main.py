@@ -5,6 +5,8 @@ import sqlite3
 import logging
 
 logger = logging.getLogger(__name__)
+
+
 def update_manifest():
     version = network.request_truth_version()
     logger.info(f"Getting manifest v{version}...")
@@ -13,12 +15,15 @@ def update_manifest():
         f.write(utils.decompress(man_bytes))
     logger.info("Manifest updated.")
 
+
 def update_master():
     con = sqlite3.connect(paths.MANIFEST_PATH)
     cur = con.cursor()
-    cur.execute("""
+    cur.execute(
+        """
     SELECT * FROM manifests WHERE name='master.mdb'
-    """)
+    """
+    )
     row = cur.fetchone()
     hash = row[1]
     logger.info(f"Getting master with hash '{hash}'...")
