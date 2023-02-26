@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import ListCardView, ListCharacterCardView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api-auth/", include("rest_framework.urls")),
-    path("charas/", include("charas.urls")),
-    path("cards/", include("cards.urls")),
+    path("", ListCardView.as_view()),
+    path("<int:chara_id>", ListCharacterCardView.as_view()),
 ]

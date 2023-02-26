@@ -1,6 +1,8 @@
 from rest_framework import serializers
+from .models import Character
 
-class CharacterSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    name = serializers.CharField()
-    name_kana = serializers.CharField()
+
+class CharacterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Character
+        fields = ["id", "name", "name_kana"]
