@@ -145,3 +145,4 @@ LOGGING = {
         "level": "INFO",
     },
 }
+STATICFILES_DIRS = [BASE_DIR / "static"]

@@ -17,4 +17,5 @@ class CardSimpleSerializer(serializers.ModelSerializer):
             "skill",
             "leader_skill",
             "is_evolved",
+            "img_url",
         ]

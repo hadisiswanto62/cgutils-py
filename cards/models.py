@@ -1,3 +1,4 @@
+from django.templatetags.static import static
 from django.db import models
 
 from .enum_models import Rarity, CardAttribute
@@ -55,6 +56,10 @@ class Card(models.Model):
     da_min = models.IntegerField()
     da_max = models.IntegerField()
     da_bonus = models.IntegerField()
+
+    @property
+    def img_url(self):
+        return static(f"card_icon/{self.id}")
 
     @property
     def is_evolved(self):
