@@ -11,17 +11,19 @@ class Page(LimitOffsetPagination):
     default_limit = 50
 
 
-class ListCardView(ListAPIView):
-    queryset = Card.objects.all()
-    serializer_class = CardSimpleSerializer
+class FilterableListView(ListAPIView):
     pagination_class = Page
     filter_backends = [DjangoFilterBackend]
     filterset_fields = "__all__"
 
 
-class ListCharacterCardView(ListCardView):
+class ListCardView(FilterableListView):
+    queryset = Card.objects.all()
     serializer_class = CardSimpleSerializer
-    pagination_class = Page
+
+
+class ListCharacterCardView(FilterableListView):
+    serializer_class = CardSimpleSerializer
 
     def get_queryset(self):
         char_id = self.kwargs["chara_id"]

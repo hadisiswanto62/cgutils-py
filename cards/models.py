@@ -59,3 +59,6 @@ class Card(models.Model):
     @property
     def is_evolved(self):
         return self.rarity % 2 == 0
+
+    def get_max_level(self):
+        return (self.rarity + 1) * 10

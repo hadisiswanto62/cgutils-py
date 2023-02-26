@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "data_updater",
     "charas",
     "cards",
+    "users",
 ]
 
 MIDDLEWARE = [
