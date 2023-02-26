@@ -16,4 +16,5 @@ class CardSimpleSerializer(serializers.ModelSerializer):
             "attribute",
             "skill",
             "leader_skill",
+            "is_evolved",
         ]

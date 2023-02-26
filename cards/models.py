@@ -38,7 +38,6 @@ class Card(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.TextField()
     character = models.ForeignKey(Character, on_delete=models.CASCADE)
-    is_evolved = models.BooleanField()
     rarity = models.IntegerField(choices=Rarity.choices)
     attribute = models.IntegerField(choices=CardAttribute.choices)
     skill = models.ForeignKey(Skill, null=True, on_delete=models.CASCADE)
@@ -56,3 +55,7 @@ class Card(models.Model):
     da_min = models.IntegerField()
     da_max = models.IntegerField()
     da_bonus = models.IntegerField()
+
+    @property
+    def is_evolved(self):
+        return self.rarity % 2 == 0
