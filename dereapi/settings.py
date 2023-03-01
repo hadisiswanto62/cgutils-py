@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "charas",
     "cards",
     "users",
+    "userauth",
 ]
 
 MIDDLEWARE = [

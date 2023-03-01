@@ -23,6 +23,7 @@ urlpatterns = [
     path("charas/", include("charas.urls")),
     path("cards/", include("cards.urls")),
     path("users/", include("users.urls")),
+    path("auth/", include("userauth.urls")),
 ]
 
 if settings.DEBUG:
