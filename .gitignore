@@ -14,5 +14,7 @@ local_settings.py
 .env
 db.sqlite3
 
-### game data
+### custom
 game_data/
+cards/static/card_icon
+static/

@@ -59,7 +59,7 @@ class Card(models.Model):
 
     @property
     def img_url(self):
-        return static(f"card_icon/{self.id}")
+        return static(f"card_icon/{self.id}.png")
 
     @property
     def is_evolved(self):

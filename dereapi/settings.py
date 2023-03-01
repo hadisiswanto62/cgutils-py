@@ -146,4 +146,7 @@ LOGGING = {
         "level": "INFO",
     },
 }
-STATICFILES_DIRS = [BASE_DIR / "static"]
+_data_dir_key = "DATA_DIR"
+DATA_DIR = Path(os.environ[_data_dir_key]) if _data_dir_key in os.environ else BASE_DIR
+STATIC_ROOT = DATA_DIR / "static"
+# STATIC_URL = "http://localhost:8001/"
