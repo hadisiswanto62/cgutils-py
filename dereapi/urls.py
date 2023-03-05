@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path("", include("appglobal.urls")),
     path("admin/", admin.site.urls),
-    path("api-auth/", include("rest_framework.urls")),
+    path("auth/", include("userauth.urls")),
     path("api/", include("api.urls")),
+    path("api/auth/", include("rest_framework.urls")),
+    path("cards/", include("cards.urls")),
     # path("charas/", include("charas.urls")),
-    # path("cards/", include("cards.urls")),
     # path("users/", include("users.urls")),
-    # path("auth/", include("userauth.urls")),
 ]
 
 if settings.DEBUG:

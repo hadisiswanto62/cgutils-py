@@ -14,6 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_PACKAGE = Path(__file__).resolve().parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "data_updater",
+    "appglobal",
     "charas",
     "cards",
     "users",
@@ -149,5 +151,5 @@ LOGGING = {
 }
 _data_dir_key = "DATA_DIR"
 DATA_DIR = Path(os.environ[_data_dir_key]) if _data_dir_key in os.environ else BASE_DIR
-STATIC_ROOT = DATA_DIR / "static"
+# STATIC_ROOT = DATA_DIR / "static"
 # STATIC_URL = "http://localhost:8001/"
