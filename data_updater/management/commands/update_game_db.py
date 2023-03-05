@@ -36,59 +36,59 @@ class Command(BaseCommand):
         # _state is django internal field
         non_updatable_fields = unique_fields.union(["_state"])
 
-        # characters = gamedbparser.parse_characters(masterdb_conn)
-        # if len(characters) > 0:
-        #     updatable_fields = set(characters[0].__dict__).difference(
-        #         non_updatable_fields
-        #     )
-        #     Character.objects.bulk_create(
-        #         characters,
-        #         update_conflicts=True,
-        #         update_fields=updatable_fields,
-        #         unique_fields=unique_fields,
-        #     )
-        #     logger.info(f"{len(characters)} Characters created/updated")
+        characters = gamedbparser.parse_characters(masterdb_conn)
+        if len(characters) > 0:
+            updatable_fields = set(characters[0].__dict__).difference(
+                non_updatable_fields
+            )
+            Character.objects.bulk_create(
+                characters,
+                update_conflicts=True,
+                update_fields=updatable_fields,
+                unique_fields=unique_fields,
+            )
+            logger.info(f"{len(characters)} Characters created/updated")
 
-        # lskills = gamedbparser.parse_leader_skills(masterdb_conn)
-        # if len(lskills) > 0:
-        #     updatable_fields = set(lskills[0].__dict__).difference(non_updatable_fields)
-        #     LeaderSkill.objects.bulk_create(
-        #         lskills,
-        #         update_conflicts=True,
-        #         update_fields=updatable_fields,
-        #         unique_fields=unique_fields,
-        #     )
-        #     logger.info(f"{len(lskills)} Leader skills created/updated")
+        lskills = gamedbparser.parse_leader_skills(masterdb_conn)
+        if len(lskills) > 0:
+            updatable_fields = set(lskills[0].__dict__).difference(non_updatable_fields)
+            LeaderSkill.objects.bulk_create(
+                lskills,
+                update_conflicts=True,
+                update_fields=updatable_fields,
+                unique_fields=unique_fields,
+            )
+            logger.info(f"{len(lskills)} Leader skills created/updated")
 
-        # durs = gamedbparser.parse_skill_duration(masterdb_conn)
-        # if len(durs) > 0:
-        #     updatable_fields = set(durs[0].__dict__).difference(non_updatable_fields)
-        #     SkillDuration.objects.bulk_create(
-        #         durs,
-        #         update_conflicts=True,
-        #         update_fields=updatable_fields,
-        #         unique_fields=unique_fields,
-        #     )
-        # probs = gamedbparser.parse_skill_probability(masterdb_conn)
-        # if len(probs) > 0:
-        #     updatable_fields = set(probs[0].__dict__).difference(non_updatable_fields)
-        #     SkillProbability.objects.bulk_create(
-        #         probs,
-        #         update_conflicts=True,
-        #         update_fields=updatable_fields,
-        #         unique_fields=unique_fields,
-        #     )
+        durs = gamedbparser.parse_skill_duration(masterdb_conn)
+        if len(durs) > 0:
+            updatable_fields = set(durs[0].__dict__).difference(non_updatable_fields)
+            SkillDuration.objects.bulk_create(
+                durs,
+                update_conflicts=True,
+                update_fields=updatable_fields,
+                unique_fields=unique_fields,
+            )
+        probs = gamedbparser.parse_skill_probability(masterdb_conn)
+        if len(probs) > 0:
+            updatable_fields = set(probs[0].__dict__).difference(non_updatable_fields)
+            SkillProbability.objects.bulk_create(
+                probs,
+                update_conflicts=True,
+                update_fields=updatable_fields,
+                unique_fields=unique_fields,
+            )
 
-        # skills = gamedbparser.parse_skills(masterdb_conn)
-        # if len(skills) > 0:
-        #     updatable_fields = set(skills[0].__dict__).difference(non_updatable_fields)
-        #     Skill.objects.bulk_create(
-        #         skills,
-        #         update_conflicts=True,
-        #         update_fields=updatable_fields,
-        #         unique_fields=unique_fields,
-        #     )
-        #     logger.info(f"{len(skills)} Skills created/updated")
+        skills = gamedbparser.parse_skills(masterdb_conn)
+        if len(skills) > 0:
+            updatable_fields = set(skills[0].__dict__).difference(non_updatable_fields)
+            Skill.objects.bulk_create(
+                skills,
+                update_conflicts=True,
+                update_fields=updatable_fields,
+                unique_fields=unique_fields,
+            )
+            logger.info(f"{len(skills)} Skills created/updated")
 
         cards = gamedbparser.parse_cards(masterdb_conn)
         if len(cards) > 0:
@@ -108,7 +108,6 @@ class Command(BaseCommand):
             path = paths.get_card_icon_path(card.id)
             if path.exists():
                 continue
-
             icon = request_card_icon(card.id)
             with files.get_writer(path, "wb") as f:
                 f.write(icon)
