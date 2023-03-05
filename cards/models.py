@@ -36,6 +36,9 @@ class Skill(models.Model):
 
 
 class Card(models.Model):
+    class Meta:
+        ordering = ["id"]
+
     id = models.IntegerField(primary_key=True)
     name = models.TextField()
     character = models.ForeignKey(Character, on_delete=models.CASCADE)
