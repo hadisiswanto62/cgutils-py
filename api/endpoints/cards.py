@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import Card
+
+from .commons import FilterableListView
+from cards.models import Card
 
 
 class CardSimpleSerializer(serializers.ModelSerializer):
@@ -19,3 +21,16 @@ class CardSimpleSerializer(serializers.ModelSerializer):
             "is_evolved",
             "img_url",
         ]
+
+
+class ListCardView(FilterableListView):
+    queryset = Card.objects.all()
+    serializer_class = CardSimpleSerializer
+
+
+class ListCharacterCardView(FilterableListView):
+    serializer_class = CardSimpleSerializer
+
+    def get_queryset(self):
+        char_id = self.kwargs["chara_id"]
+        return Card.objects.filter(character__id=char_id).all()
