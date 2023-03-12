@@ -10,13 +10,21 @@
             <input type="submit" />
         </form>
     
+    <form method="post" action="{% url 'add_ownedcard' %}">
+        {% csrf_token %}
         <div class="row imagetiles">
             {% for card in object_list %}
                 <div class="imagetimes-img col-lg-2 col-md-3 col-sm-4 col-xs-5">
-                    <img src="{{ card.img_url }}" class="img-responsive">
+                <!-- <img class="card-icon" id="{{card.id}}" src="{{ card.img_url }}" class="img-responsive" onclick="toggle('{{card.id}}')" /> -->
+                <input class="card-icon-checkbox" type="checkbox" id="{{card.id}}" name="card-{{card.id}}"/>
+                <label class="card-icon-container" for="{{card.id}}">
+                    <img class="card-icon" id="card-{{card.id}}" src="{{ card.img_url }}" class="img-responsive"/>
+                </label>
                 </div>
             {% endfor %}
         </div>
+        <input type="submit" value="Submit">
+    </form>
         <div class="pagination">
             <span class="step-links">
                 {% if page_obj.has_previous %}

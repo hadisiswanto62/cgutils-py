@@ -25,7 +25,7 @@ urlpatterns = [
     path("api/auth/", include("rest_framework.urls")),
     path("cards/", include("cards.urls")),
     # path("charas/", include("charas.urls")),
-    # path("users/", include("users.urls")),
+    path("users/", include("users.urls")),
 ]
 
 if settings.DEBUG:

@@ -3,5 +3,5 @@ from django.urls import path
 from .views import UserOwnedCardListView
 
 urlpatterns = [
-    path("cards", UserOwnedCardListView.as_view()),
+    path("cards", UserOwnedCardListView.as_view(), name="add_ownedcard"),
 ]
