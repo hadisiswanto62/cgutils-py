@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "cards",
     "users",
     "userauth",
-    "api",
+    # "api",
 ]
 
 MIDDLEWARE = [

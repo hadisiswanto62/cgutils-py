@@ -4,23 +4,21 @@ from django.core.exceptions import ValidationError
 
 from cards.models import Card
 
-
 class UserData(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-
-class OwnedCard(models.Model):
-    user_data = models.ForeignKey(UserData, on_delete=models.CASCADE)
-    card = models.ForeignKey(Card, on_delete=models.CASCADE)
-    level = models.IntegerField()
-    skill_level = models.IntegerField()
+    cards = models.ManyToManyField(to=Card)
 
 class Team(models.Model):
+    user_data = models.ForeignKey(UserData, on_delete=models.CASCADE)
     name = models.TextField()
-    cards = models.ManyToManyField(to=OwnedCard)
+    leader = models.ForeignKey(to=Card, null=True, on_delete=models.SET_NULL, related_name="leader")
+    cards = models.ManyToManyField(to=Card, related_name="nonleaders")
 
     def clean(self):
-        if self.cards.count() > 5:
+        count = self.cards.count()
+        if self.leader is not None:
+            count += 1
+        if count > 5:
             raise ValidationError("Team has too many cards")
         super().clean()
 
