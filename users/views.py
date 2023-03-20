@@ -1,7 +1,8 @@
 from django.db.models import QuerySet
+from django.views.generic import ListView
 from django.shortcuts import redirect
 
-from .models import UserData
+from .models import UserData, Team
 from cards.models import Card
 from cards.views import CardListView, CardFilter
 
@@ -21,3 +22,9 @@ class UserOwnedCardListView(CardListView):
                 user_data.cards.add(card)
         user_data.save()
         return redirect("add_ownedcard")
+    
+class TeamView(ListView):
+    model = Team
+
+    def get_context_data(self, **kwargs):
+        pass
